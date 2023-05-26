@@ -42,6 +42,7 @@ function playRound(playerChoice = prompt('Please choose rock, paper, or scissors
     }
 }
 
+//game will be played 5 times with winner declared at the end.
 function game(){
     let userScore = 0;
     let computerScore = 0;
@@ -64,4 +65,3 @@ function game(){
         console.log(`The score is User:${userScore} Computer:${computerScore}.You lose!`)
     }
 }
-//game will be played 5 times with winner declared at the end.
