@@ -15,30 +15,24 @@ function getComputerChoice() {
 //user choice is compared to computer choice and winner is chosen.
 function playRound(playerChoice = prompt('Please choose rock, paper, or scissors.'), computerChoice = getComputerChoice()){
 
-    if (playerChoice.toLowerCase() === computerChoice.toLowerCase()) {
-        console.log(`You both chose ${computerChoice}, It\'s a draw!`)
+    playerChoice = playerChoice.charAt(0).toLocaleUpperCase() + playerChoice.slice(1).toLowerCase();
+
+    computerChoice = computerChoice.charAt(0).toLocaleUpperCase() + computerChoice.slice(1).toLowerCase();
+
+    if (playerChoice === computerChoice) { //if tie
+        console.log(`You both chose ${computerChoice}, It\'s a draw!`);
         return 2;
-    } else if (playerChoice.toLowerCase() === "rock" && computerChoice.toLowerCase() === 'paper') {
-        console.log(`Paper beats Rock. You Lose!`)
-        return 0;
-    } else if (playerChoice.toLowerCase() === "rock" && computerChoice.toLowerCase() === 'scissors') {
-        console.log(`Rock beats Scissors. You Win!`)
-        return 1;
-    } else if (playerChoice.toLowerCase() === "paper" && computerChoice.toLowerCase() === 'rock') {
-        console.log(`Paper beats Rock. You Win!`)
-        return 1;
-    } else if (playerChoice.toLowerCase() === "paper" && computerChoice.toLowerCase() === 'scissors') {
-        console.log(`Scissors beats Paper. You Lose!`)
-        return 0;
-    } else if (playerChoice.toLowerCase() === "scissors" && computerChoice.toLowerCase() === 'rock') {
-        console.log(`Rock beats Scissors. You Lose!`)
-        return 0;
-    } else if (playerChoice.toLowerCase() === "scissors" && computerChoice.toLowerCase() === 'paper') {
-        console.log(`Scissors beats Paper. You Win!`)
-        return 1;
-    } else {
-        console.log('You entered an invalid choice! Please enter Rock, Paper, or Scissors!')
+    } else if (playerChoice !== "Rock" && playerChoice !== "Paper" && playerChoice !== "Scissors") { //if error
+        console.log('You entered an invalid choice! Please enter Rock, Paper, or Scissors!');
         return 3;
+    } else if ((playerChoice === "Rock" && computerChoice === 'Scissors') ||
+    (playerChoice === "Paper" && computerChoice === 'Rock') || 
+    (playerChoice === "Scissors" && computerChoice === 'Paper')) { //if win
+        console.log(`${playerChoice} beats ${computerChoice}. You Win!`);
+        return 1;
+    } else { //if lose
+        console.log(`${computerChoice} beats ${playerChoice}. You Lose!`);
+        return 0;
     }
 }
 
@@ -65,3 +59,4 @@ function game(){
         console.log(`The score is User:${userScore} Computer:${computerScore}.You lose!`)
     }
 }
+
